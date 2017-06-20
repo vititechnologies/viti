@@ -11,6 +11,10 @@ public class User {
 	private String mobileNo;
 	private Address address;
 
+	public User() {
+		super();
+	}
+
 	public User(String firstName, String middleName, String lastName, String gender, String dob, String email) {
 		super();
 		this.firstName = firstName;

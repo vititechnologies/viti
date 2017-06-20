@@ -7,7 +7,11 @@ public class Student extends User {
 	private String rollNo;
 	private String studentClass;
 	private String test;
-	
+
+	public Student() {
+		super();
+	}
+
 	public Student(String firstName, String middleName, String lastName, String gender, String dob, String email) {
 		super(firstName, middleName, lastName, gender, dob, email);
 		// TODO Auto-generated constructor stub
