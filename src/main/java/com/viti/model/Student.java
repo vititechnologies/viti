@@ -6,7 +6,6 @@ public class Student extends User {
 	private String courseId;
 	private String rollNo;
 	private String studentClass;
-	private String test;
 
 	public Student() {
 		super();
@@ -47,14 +46,6 @@ public class Student extends User {
 
 	public void setStudentClass(String studentClass) {
 		this.studentClass = studentClass;
-	}
-
-	public String getTest() {
-		return test;
-	}
-
-	public void setTest(String test) {
-		this.test = test;
 	}
 
 }

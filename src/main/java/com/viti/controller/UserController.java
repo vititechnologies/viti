@@ -1,7 +1,5 @@
 package com.viti.controller;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -18,44 +16,40 @@ import com.viti.service.UserService;
 
 @RestController
 public class UserController {
-	private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
+	private static final Logger LOG = LoggerFactory.getLogger(UserController.class);
 
 	@Autowired
 	private UserService userService;
-	
-	private List<User> users = new ArrayList<>(
-			Arrays.asList(new User("Sunildatta", "P", "Kulkarni", "Male", "10/10/2000", "sunil@viti.com")));
 
 	@RequestMapping(value = "/users")
 	public List<User> getUsers() {
-		LOGGER.debug("User retrieved successfully");
+		LOG.debug("Entering to get users.");
+		List<User> users = userService.getUsers();
+		LOG.debug("User retrieved successfully");
 		return users;
 	}
 
 	@RequestMapping(value = "/users/{id}")
 	public User getUser(@PathVariable String id) {
-		return users.stream().filter(t -> t.getFirstName().equals(id)).findFirst().get();
+		// Call service method to get one user
+		return null;
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/users")
 	public void addUser(@RequestBody User user) {
-		users.add(user);
+		LOG.info("Entering creating to user");
+		userService.createUser(user);
+		LOG.info("Successfully created user");
 	}
 
 	@RequestMapping(method = RequestMethod.PUT, value = "/users/{id}")
 	public void updateUser(@RequestBody User user, @PathVariable String id) {
-
-		for (int i = 0; i < users.size(); i++) {
-			User u1 = users.get(i);
-			if (u1.getFirstName().equals(id)) {
-				users.set(i, user);
-			}
-		}
+		// Call service method to update user.
 	}
 
 	@RequestMapping(method = RequestMethod.DELETE, value = "/users/{id}")
 	public void deleteUser(@PathVariable String id) {
-		users.removeIf(t -> t.getFirstName().equals(id));
+		// Call service method to delete users.
 
 	}
 

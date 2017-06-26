@@ -1,7 +1,11 @@
 package com.viti.dao;
 
-import com.viti.model.User;
+import javax.transaction.Transactional;
 
-public interface UserDAO {
-	void save(User user);
+import org.springframework.data.repository.CrudRepository;
+
+import com.viti.dto.UserTO;
+
+@Transactional
+public interface UserDAO extends CrudRepository<UserTO, Long>{
 }
