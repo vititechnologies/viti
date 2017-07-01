@@ -22,7 +22,7 @@ CREATE  TABLE address (
   	FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-CREATE  TABLE users (
+CREATE TABLE users (
 	user_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   	firstname VARCHAR(45) NOT NULL ,
   	middlename VARCHAR(45) NOT NULL ,
@@ -35,3 +35,31 @@ CREATE  TABLE users (
   	created_on DATETIME NOT NULL,
   	updated_on DATETIME NOT NULL
   );
+  
+  CREATE TABLE role (
+  	role_id TINYINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  	role_name VARCHAR(30)
+  );
+  
+  CREATE TABLE course (
+  	course_id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  	course_name VARCHAR(50)
+  );
+  
+  CREATE TABLE grade (
+  	grade_id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  	grade_name VARCHAR(30)
+  );
+  
+  CREATE TABLE attendance (
+  	attendance_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  	student_id BIGINT UNSIGNED,
+  	FOREIGN KEY (student_id) REFERENCES users(user_id) ON DELETE CASCADE ON UPDATE CASCADE,
+  	course_id SMALLINT UNSIGNED,
+  	FOREIGN KEY (course_id) REFERENCES course(course_id) ON DELETE CASCADE ON UPDATE CASCADE,
+  	attendance_date DATE,
+  	status TINYINT UNSIGNED,
+  	comments VARCHAR(100)
+  );
+  
+  
