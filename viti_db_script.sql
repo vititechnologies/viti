@@ -11,8 +11,6 @@ SET default_storage_engine=INNODB;
 --  table structure for users
 -- ----------------------------
 
-DROP TABLE IF EXISTS users;
-
 CREATE TABLE users (
 	user_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   	firstname VARCHAR(45) NOT NULL ,
@@ -63,6 +61,23 @@ CREATE  TABLE address (
   	FOREIGN KEY (student_id) REFERENCES students(student_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
   
+  CREATE TABLE students (
+	student_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  	firstname VARCHAR(45) NOT NULL ,
+  	middlename VARCHAR(45) NOT NULL ,
+  	lastname VARCHAR(45) NOT NULL ,
+  	password VARCHAR(45) NOT NULL ,
+  	gender VARCHAR(6) NOT NULL,
+  	dob DATE,
+  	email VARCHAR(30) NOT NULL,
+  	mobileno VARCHAR(20) NOT NULL,
+  	cousre_id VARCHAR(20) NOT NULL,
+  	rollno VARCHAR(20) NOT NULL,
+  	studentclass  VARCHAR(20) NOT NULL,
+  	created_on DATETIME NOT NULL,
+  	updated_on DATETIME NOT NULL
+  );
+  
   CREATE TABLE role (
   	role_id TINYINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   	role_name VARCHAR(30)
@@ -94,5 +109,3 @@ CREATE  TABLE address (
   	status VARCHAR(20) NOT NULL,
   	remarks VARCHAR(50)
   );
-  
-  
