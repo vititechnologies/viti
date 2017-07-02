@@ -16,7 +16,7 @@ CREATE TABLE users (
   	firstname VARCHAR(45) NOT NULL ,
   	middlename VARCHAR(45) NOT NULL ,
   	lastname VARCHAR(45) NOT NULL ,
-  	PASSWORD VARCHAR(45) NOT NULL ,
+  	password VARCHAR(45) NOT NULL ,
   	gender VARCHAR(6) NOT NULL,
   	dob DATE,
   	email VARCHAR(30) NOT NULL,
@@ -32,7 +32,7 @@ CREATE TABLE students (
   	firstname VARCHAR(45) NOT NULL ,
   	middlename VARCHAR(45) NOT NULL ,
   	lastname VARCHAR(45) NOT NULL ,
-  	PASSWORD VARCHAR(45) NOT NULL ,
+  	password VARCHAR(45) NOT NULL ,
   	gender VARCHAR(6) NOT NULL,
   	dob DATE,
   	email VARCHAR(30) NOT NULL,
@@ -55,8 +55,8 @@ CREATE  TABLE address (
 	zipcode VARCHAR(10) NOT NULL,
 	created_on DATETIME NOT NULL,
   	updated_on DATETIME NOT NULL,
-  	user_id BIGINT UNSIGNED,
-  	student_id BIGINT UNSIGNED,
+  	user_id BIGINT UNSIGNED NULL,
+  	student_id BIGINT UNSIGNED NULL,
   	FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE ON UPDATE CASCADE,
   	FOREIGN KEY (student_id) REFERENCES students(student_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
