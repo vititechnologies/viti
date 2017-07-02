@@ -4,8 +4,10 @@ import javax.transaction.Transactional;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.viti.dto.UserTO;
+import com.viti.dto.StaffTO;
 
 @Transactional
-public interface UserDAO extends CrudRepository<UserTO, Long>{
+public interface StaffDAO extends CrudRepository<StaffTO, Long> {
+
 }
+
