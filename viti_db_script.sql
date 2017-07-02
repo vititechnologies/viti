@@ -19,7 +19,9 @@ CREATE  TABLE address (
 	created_on DATETIME NOT NULL,
   	updated_on DATETIME NOT NULL,
   	user_id BIGINT UNSIGNED,
-  	FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE ON UPDATE CASCADE
+  	student_id BIGINT UNSIGNED,
+  	FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE ON UPDATE CASCADE,
+  	FOREIGN KEY (student_id) REFERENCES students(student_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE users (
@@ -32,6 +34,23 @@ CREATE TABLE users (
   	dob DATE,
   	email VARCHAR(30) NOT NULL,
   	mobileno VARCHAR(20) NOT NULL,
+  	created_on DATETIME NOT NULL,
+  	updated_on DATETIME NOT NULL
+  );
+  
+  CREATE TABLE students (
+	student_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  	firstname VARCHAR(45) NOT NULL ,
+  	middlename VARCHAR(45) NOT NULL ,
+  	lastname VARCHAR(45) NOT NULL ,
+  	password VARCHAR(45) NOT NULL ,
+  	gender VARCHAR(6) NOT NULL,
+  	dob DATE,
+  	email VARCHAR(30) NOT NULL,
+  	mobileno VARCHAR(20) NOT NULL,
+  	cousre_id VARCHAR(20) NOT NULL,
+  	rollno VARCHAR(20) NOT NULL,
+  	studentclass  VARCHAR(20) NOT NULL,
   	created_on DATETIME NOT NULL,
   	updated_on DATETIME NOT NULL
   );
@@ -61,5 +80,4 @@ CREATE TABLE users (
   	status TINYINT UNSIGNED,
   	comments VARCHAR(100)
   );
-  
   
