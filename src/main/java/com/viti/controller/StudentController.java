@@ -4,14 +4,18 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.viti.model.Student;
 import com.viti.model.User;
@@ -24,6 +28,29 @@ public class StudentController {
 
 	@Autowired
 	private StudentService studentservice;
+	
+	@RequestMapping(value="/registration", method = RequestMethod.GET)
+	public ModelAndView studentRegistration(){
+		ModelAndView modelAndView = new ModelAndView();
+		Student student = new Student();
+		 List<Student> list=studentservice.getStudents();
+     	modelAndView.addObject("student1", list);
+		 modelAndView.addObject("student", student);
+		modelAndView.setViewName("registration");
+		return modelAndView;
+	}
+	
+	
+	@RequestMapping(value = "/registration", method = RequestMethod.POST)
+	public ModelAndView createNewStudent(@Valid Student student, BindingResult bindingResult) {
+		ModelAndView modelAndView = new ModelAndView();
+		    studentservice.createStudent(student);
+		    List<Student> list=studentservice.getStudents();
+	     	modelAndView.addObject("student1", list);
+			modelAndView.addObject("successMessage", "Student has been registered successfully");
+			modelAndView.setViewName("registration");
+		return modelAndView;
+	}
 
 	@RequestMapping(value = "/students")
 	public List<Student> getStudents() {
