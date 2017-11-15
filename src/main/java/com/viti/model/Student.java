@@ -2,7 +2,7 @@ package com.viti.model;
 
 public class Student extends User {
 
-	private String studentId;
+	private long studentId;
 	private String courseId;
 	private String rollNo;
 	private String studentClass;
@@ -16,12 +16,12 @@ public class Student extends User {
 		// TODO Auto-generated constructor stub
 	}
 
-	public String getStudentId() {
+	public long getStudentId() {
 		return studentId;
 	}
 
-	public void setStudentId(String studentId) {
-		this.studentId = studentId;
+	public void setStudentId(long l) {
+		this.studentId = l;
 	}
 
 	public String getCourseId() {

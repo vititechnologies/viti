@@ -15,6 +15,7 @@ import com.viti.model.Student;
 import com.viti.service.StudentService;
 
 
+
 @Service("StudentService")
 public class StudentServiceImpl implements StudentService {
 	
@@ -85,6 +86,7 @@ public class StudentServiceImpl implements StudentService {
 		List<Student> students = new ArrayList<>();
 		for (StudentTO studentTO : studentTOs) {
 			Student student = new Student();
+			student.setStudentId(studentTO.getStudentId());
 			student.setFirstName(studentTO.getFirstName());
 			student.setMiddleName(studentTO.getMiddleName());
 			student.setLastName(studentTO.getLastName());
@@ -101,6 +103,41 @@ public class StudentServiceImpl implements StudentService {
 		}
 
 		return students;
+	}
+
+	@Override
+	public Student findById(long id) {
+		
+		StudentTO studentTO = studentDAO.findOne(id);
+		
+			Student student = new Student();
+			student.setStudentId(studentTO.getStudentId());
+			student.setFirstName(studentTO.getFirstName());
+			student.setMiddleName(studentTO.getMiddleName());
+			student.setLastName(studentTO.getLastName());
+			student.setGender(studentTO.getGender());
+			student.setDob(studentTO.getDob());
+			student.setEmail(studentTO.getEmail());
+			student.setMobileNo(studentTO.getMobileNo());
+			student.setPassword(studentTO.getPassword());
+			student.setCourseId(studentTO.getCourseId());
+			student.setRollNo(studentTO.getRollNo());
+			student.setStudentClass(studentTO.getStudentClass());
+
+		
+		return student;
+	}
+
+	@Override
+	public void deleteStudentById(Long id) {
+		studentDAO.delete(id);
+	}
+
+	@Override
+	public void updateStudent(Student student) {
+		createStudent(student);
+		
+		
 	}
 
 }

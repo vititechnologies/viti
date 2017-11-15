@@ -2,7 +2,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Registration Form</title>
+<title>Update Student</title>
 <link rel="stylesheet" type="text/css"
 	th:href="@{/css/registration.css}" />
 <link rel="stylesheet"
@@ -16,10 +16,10 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3">
-				<form autocomplete="off" action="#" th:action="@{/registration}"
+				<form autocomplete="off" action="#" th:action="@{/studentUpdate/{id}(id=${student.studentId})}"
 					th:object="${student}" method="post" class="form-horizontal"
 					role="form">
-					<h2>Student Registration Form</h2>
+					<h2>Student Update Form</h2>
 					<div class="form-group">
 						<div class="col-sm-9">
 							<label th:if="${#fields.hasErrors('firstName')}"
@@ -119,58 +119,13 @@
 					
 					<div class="form-group">
 						<div class="col-sm-9">
-							<button type="submit" class="btn btn-primary btn-block">Register
+							<button type="submit" class="btn btn-primary btn-block">Update
 								Student</button>
 						</div>
 					</div>
 
 					<span th:utext="${successMessage}"></span>				
 					
-					
-					
-		<form th:action="@{getallstudents}" method="get">
-		<button class="btn btn-md btn-warning btn-block" type="Submit">STUDENT DETAILS</button>
-	     </form>
-				<table class="table table-striped table-hover">
-              <thead>
-               <tr>
-               <th>firstName</th>
-               <th>middleName</th>
-               <th>lastName</th>
-               <th>password</th>
-               <th>gender</th>
-               <th>dob</th>
-               <th>email</th>
-               <th>mobileNo</th>
-               <th>courseId</th>
-               <th>rollNo</th>
-               <th>studentClass</th>
-               </tr>
-            </thead>
-            <tbody>
-            <tr th:each="student : ${student1}">
-             <td th:text="${student.FirstName}"></td>      
-            <td th:text="${student.middleName}"></td>
-             <td th:text="${student.lastName}"></td>      
-            <td th:text="${student.password}"></td>
-             <td th:text="${student.gender}"></td>      
-            <td th:text="${student.dob}"></td>
-             <td th:text="${student.email}"></td>      
-            <td th:text="${student.mobileNo}"></td>      
-            <td th:text="${student.courseId}"></td>
-            <td th:text="${student.rollNo}"></td>      
-            <td th:text="${student.studentClass}"></td>
-             <td> 
-             <div class="btn-group pull-right">
-              <a class="btn btn-sm btn-primary" th:href="@{/updateStudent/{id}(id=${student.studentId})}" >EDIT</a>
-              <a class="delete btn btn-sm btn-danger" th:href="@{delete/students/{id}(id=${student.studentId})}">DELETE</a>
-                 </div>
-                 
-
-              </td>
-             </tr>
-             </tbody>
-             </table>
 
 
 				</form>
