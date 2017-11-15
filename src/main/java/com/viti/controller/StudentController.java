@@ -52,6 +52,30 @@ public class StudentController {
 		return modelAndView;
 	}
 	
+	@RequestMapping(method = RequestMethod.POST, value = "/studentUpdate/{id}")
+	public ModelAndView update(@Valid Student student, @PathVariable long id) {
+		 Student currentStudent = studentservice.findById(id);
+		     currentStudent.setStudentId(student.getStudentId());
+	        currentStudent.setFirstName(student.getFirstName());
+	        currentStudent.setMiddleName(student.getMiddleName());
+	        currentStudent.setLastName(student.getLastName());
+	        currentStudent.setGender(student.getGender());
+	        currentStudent.setDob(student.getDob());
+	        currentStudent.setEmail(student.getEmail());
+	        currentStudent.setMobileNo(student.getMobileNo());
+	        currentStudent.setPassword(student.getPassword());
+	        currentStudent.setCourseId(student.getCourseId());
+	        currentStudent.setRollNo(student.getRollNo());
+	        currentStudent.setStudentClass(student.getStudentClass());
+	        currentStudent.setEmail(student.getEmail());
+	       
+		studentservice.updateStudent(currentStudent);
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("redirect:/registration");
+		return modelAndView;
+	
+	}
+	
 	@RequestMapping(value = "delete/students/{id}" ,method = RequestMethod.GET)
 	public ModelAndView deleteStudentt(@PathVariable long id) {
 		ModelAndView modelAndView = new ModelAndView();
@@ -88,30 +112,6 @@ public class StudentController {
 		LOG.info("Entering creating to student");
 		studentservice.createStudent(student);
 		LOG.info("Successfully created student");
-	}
-
-	@RequestMapping(method = RequestMethod.POST, value = "/studentUpdate/{id}")
-	public ModelAndView update(@Valid Student student, @PathVariable long id) {
-		 Student currentStudent = studentservice.findById(id);
-		     currentStudent.setStudentId(student.getStudentId());
-	        currentStudent.setFirstName(student.getFirstName());
-	        currentStudent.setMiddleName(student.getMiddleName());
-	        currentStudent.setLastName(student.getLastName());
-	        currentStudent.setGender(student.getGender());
-	        currentStudent.setDob(student.getDob());
-	        currentStudent.setEmail(student.getEmail());
-	        currentStudent.setMobileNo(student.getMobileNo());
-	        currentStudent.setPassword(student.getPassword());
-	        currentStudent.setCourseId(student.getCourseId());
-	        currentStudent.setRollNo(student.getRollNo());
-	        currentStudent.setStudentClass(student.getStudentClass());
-	        currentStudent.setEmail(student.getEmail());
-	       
-		studentservice.updateStudent(currentStudent);
-		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("redirect:/registration");
-		return modelAndView;
-	
 	}
 
 	@RequestMapping(method = RequestMethod.DELETE, value = "/students/{id}")
