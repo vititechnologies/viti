@@ -28,71 +28,70 @@ public class StudentController {
 
 	@Autowired
 	private StudentService studentservice;
-	
-	@RequestMapping(value="/registration", method = RequestMethod.GET)
-	public ModelAndView studentRegistration(){
+
+	@RequestMapping(value = "/registration", method = RequestMethod.GET)
+	public ModelAndView studentRegistration() {
 		ModelAndView modelAndView = new ModelAndView();
 		Student student = new Student();
-		 List<Student> list=studentservice.getStudents();
-     	modelAndView.addObject("student1", list);
-		 modelAndView.addObject("student", student);
+		List<Student> list = studentservice.getStudents();
+		modelAndView.addObject("student1", list);
+		modelAndView.addObject("student", student);
 		modelAndView.setViewName("registration");
 		return modelAndView;
 	}
-	
-	
+
 	@RequestMapping(value = "/registration", method = RequestMethod.POST)
 	public ModelAndView createNewStudent(@Valid Student student, BindingResult bindingResult) {
 		ModelAndView modelAndView = new ModelAndView();
-		    studentservice.createStudent(student);
-		    List<Student> list=studentservice.getStudents();
-	     	modelAndView.addObject("student1", list);
-			modelAndView.addObject("successMessage", "Student has been registered successfully");
-			modelAndView.setViewName("registration");
+		studentservice.createStudent(student);
+		List<Student> list = studentservice.getStudents();
+		modelAndView.addObject("student1", list);
+		modelAndView.addObject("successMessage", "Student has been registered successfully");
+		modelAndView.setViewName("registration");
 		return modelAndView;
 	}
-	
+
 	@RequestMapping(method = RequestMethod.POST, value = "/studentUpdate/{id}")
 	public ModelAndView update(@Valid Student student, @PathVariable long id) {
-		 Student currentStudent = studentservice.findById(id);
-		     currentStudent.setStudentId(student.getStudentId());
-	        currentStudent.setFirstName(student.getFirstName());
-	        currentStudent.setMiddleName(student.getMiddleName());
-	        currentStudent.setLastName(student.getLastName());
-	        currentStudent.setGender(student.getGender());
-	        currentStudent.setDob(student.getDob());
-	        currentStudent.setEmail(student.getEmail());
-	        currentStudent.setMobileNo(student.getMobileNo());
-	        currentStudent.setPassword(student.getPassword());
-	        currentStudent.setCourseId(student.getCourseId());
-	        currentStudent.setRollNo(student.getRollNo());
-	        currentStudent.setStudentClass(student.getStudentClass());
-	        currentStudent.setEmail(student.getEmail());
-	       
+		Student currentStudent = studentservice.findById(id);
+		currentStudent.setStudentId(id);
+		currentStudent.setFirstName(student.getFirstName());
+		currentStudent.setMiddleName(student.getMiddleName());
+		currentStudent.setLastName(student.getLastName());
+		currentStudent.setGender(student.getGender());
+		currentStudent.setDob(student.getDob());
+		currentStudent.setEmail(student.getEmail());
+		currentStudent.setMobileNo(student.getMobileNo());
+		currentStudent.setPassword(student.getPassword());
+		currentStudent.setCourseId(student.getCourseId());
+		currentStudent.setRollNo(student.getRollNo());
+		currentStudent.setStudentClass(student.getStudentClass());
+		currentStudent.setEmail(student.getEmail());
+
 		studentservice.updateStudent(currentStudent);
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("redirect:/registration");
 		return modelAndView;
-	
+
 	}
-	
-	@RequestMapping(value = "delete/students/{id}" ,method = RequestMethod.GET)
+
+	@RequestMapping(value = "delete/students/{id}", method = RequestMethod.GET)
 	public ModelAndView deleteStudentt(@PathVariable long id) {
 		ModelAndView modelAndView = new ModelAndView();
 		studentservice.deleteStudentById(id);
 		modelAndView.setViewName("redirect:/registration");
 		return modelAndView;
 	}
-	
-	@RequestMapping(value = "/updateStudent/{id}" , method = RequestMethod.GET)
+
+	@RequestMapping(value = "/updateStudent/{id}", method = RequestMethod.GET)
 	public ModelAndView updateStudent(@PathVariable long id) {
 		ModelAndView modelAndView = new ModelAndView();
 		Student student = studentservice.findById(id);
-		 modelAndView.addObject("student",student);
+		modelAndView.addObject("student", student);
 		modelAndView.setViewName("updateStudent");
 		return modelAndView;
 	}
-	
+
 	@RequestMapping(value = "/students")
 	public List<Student> getStudents() {
 		LOG.debug("Entering to get students.");
